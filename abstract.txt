@@ -1,0 +1,16 @@
+Vulkan objects are either created directly
+with calls to functions like vkCreateXXX, 
+or allocated by another object with functions
+like vkAllocateXXX. When an object is no longer
+used, you must destroy it with vkDestroyXXX, and
+vkFreeXXX, the counterparts to the previously
+stated functions. They all share the parameter
+pAllocator which is an optional param that allows
+you to specify callbacks for your own mem 
+allocator.
+
+General pattern for creating vulkan objects is to:
+
+-pass a pointer with struct creation info
+-pass a pointer to custom allocator callbacks
+-pass a pointer to the handle of the new object
