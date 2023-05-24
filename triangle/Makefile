@@ -4,6 +4,9 @@ LDFLAGS = -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
 triangle: main.cpp
 	g++ $(CFLAGS) -o triangle main.cpp $(LDFLAGS)
 
+debug: main.cpp
+	g++ $(CFLAGS) -Wall -Wextra -pedantic -g -o triangle main.cpp $(LDFLAGS)
+
 .PHONY: test clean
 
 test: triangle
@@ -11,3 +14,5 @@ test: triangle
 
 clean:
 	rm -f triangle
+
+

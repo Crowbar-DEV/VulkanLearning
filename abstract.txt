@@ -14,3 +14,38 @@ General pattern for creating vulkan objects is to:
 -pass a pointer with struct creation info
 -pass a pointer to custom allocator callbacks
 -pass a pointer to the handle of the new object
+
+very limited error checking by the vulkan api itself
+
+validation layers are optional components that hook
+into vulkan functions to provide additional 
+operations. some common operations are:
+
+-Checking the values of parameters against the specification to detect misuse
+-Tracking creation and destruction of objects to find resource leaks
+-Checking thread safety by tracking the threads that calls originate from
+-Logging every call and its parameters to the standard output
+-Tracing Vulkan calls for profiling and replaying
+
+Queue families:
+
+almost every operation in vulkan requires commands to 
+be submitted to a queue.
+
+There are different types of queues that derive from
+different queue families.
+
+
+After creating physical device, we must create a logical
+device to interface with it. The creation of the
+logical device is quite similar to the creation of
+the vulkan instance. We need to specify the features 
+we want as well as the queues we want to know, now
+that we have queuried for the queues we want.
+
+Vulkan is platform agnostic, meaning that it does not
+directly communicate with platform specific window apis.
+However, it does provide a window surface abstraction
+through the extension 'VK_KHR_surface' that exposes a
+'VkSurfaceKHR' which provides an abstracted surface to
+draw rendered images to.
